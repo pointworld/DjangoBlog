@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
@@ -83,7 +83,7 @@ DATABASES = {
         'PASSWORD': config('DB_MYSQL_PASSWORD'),
         'HOST': config('DB_MYSQL_HOST'),
         'PORT': config('DB_MYSQL_PORT', default=3306, cast=int),
-        'OPTIONS': {'charset': 'utf8mb4'},
+        'OPTIONS': {'charset': 'utf8', 'init_command': 'SET default_storage_engine=INNODB;'},
     }
 }
 
