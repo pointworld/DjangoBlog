@@ -539,7 +539,7 @@ a:hover {
 .site {
     padding: 0 24px;
     padding: 0 1.714285714rem;
-    background-color: #fff;
+    background-color: rgb(220, 237, 199);
 }
 
 .site-content {
@@ -2437,3 +2437,107 @@ li #reply-title {
     font-size: small;
 }
 
+/*==================================================*/
+
+/**
+ * 文档公共样式
+ * C by Point at .
+ * M by Point at .
+ *
+ *
+ */
+
+/*文档背景*/
+html {
+    background-color: rgb(220, 237, 199);!important;
+}
+
+/*文档文字*/
+
+/*被选中文字*/
+.entry-content[contenteditable=true] ::selection {
+    background: #ff5500;
+    opacity: 1;
+}
+
+/*分类 - 基于 URN 实现分类，促进 URN 的发展*/
+
+/*目录*/
+
+/*主标题*/
+.entry-content[contenteditable=true]  h1 {
+    text-align: center;
+}
+
+/*次标题*/
+.entry-content[contenteditable=true] h2,
+.entry-content[contenteditable=true] h3,
+.entry-content[contenteditable=true] h4,
+.entry-content[contenteditable=true] h5,
+.entry-content[contenteditable=true] h6 {
+    padding-left: 4px;
+    border-left: 6px solid blue;
+}
+
+/*摘要*/
+
+/*正文*/
+
+/*块定义*/
+.entry-content[contenteditable=true] blockquote {
+    padding-left: 36px;
+    border-left: 4px solid red;
+    /*margin-left: 0;*/
+}
+
+/*参考文献*/
+/*附录*/
+
+/*代码*/
+.entry-content[contenteditable=true] pre {
+    padding: 1em;
+    border-radius: 3px;
+    overflow: auto;
+    background: rgb(45, 45, 45);
+    font-size: 0.8em;
+    font-family: Consolas, Monaco, "Andale Mono", monospace;
+    word-break: normal;
+    line-height: 1.5;
+    tab-size: 2;
+    hyphens: none;
+    color: rgb(204, 204, 204);
+}
+.entry-content[contenteditable=true] pre > code {
+    /*width: 100%!important;*/
+}
+
+/*列表*/
+.entry-content[contenteditable=true] ul, ol {
+
+}
+
+/*表格*/
+.entry-content[contenteditable=true] table {
+    border-top: 2px solid #131415!important;
+    border-bottom: 2px solid #131415!important;
+    collapse: collapse;
+    border-collapse: collapse;
+    width: 100%;
+}
+.entry-content[contenteditable=true] table th,
+.entry-content[contenteditable=true] table thead{
+    text-align: left;
+    border-bottom: 1px solid #334455!important;
+    background-color: #71D6FF!important;
+}
+.entry-content[contenteditable=true] table tr:nth-of-type(2n-1){
+    background-color: #9a9a9a;
+}
+.entry-content[contenteditable=true] table td{
+    border:none;
+}
+
+/*图片*/
+.entry-content[contenteditable=true] img {
+    width: 100%;
+}
