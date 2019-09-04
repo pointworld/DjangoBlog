@@ -5,6 +5,7 @@ from decouple import config
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
@@ -18,8 +19,11 @@ SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE_ROOT = os.path.abspath(os.path.join(SITE_ROOT, '../'))
 
 INSTALLED_APPS = [
+    # third part app: replace django admin theme
     'simpleui',
-    # 'django.contrib.admin',
+
+    # django raw app
+
     'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -28,15 +32,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+
+    # third part app
+
     'mdeditor',
     'haystack',
+    'compressor',
+
+    # self-defined app
+
     'blog',
     'accounts',
     'comments',
     'oauth',
     'servermanager',
     'owntracks',
-    'compressor'
 ]
 
 MIDDLEWARE = [
