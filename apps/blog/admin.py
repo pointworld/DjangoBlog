@@ -25,11 +25,9 @@ class ArticleListFilter(admin.SimpleListFilter):
 
 
 class ArticleForm(forms.ModelForm):
-    # body = forms.CharField(widget=AdminPagedownWidget())
-
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ['title', 'author', 'pub_time', 'status','comment_status', 'type', 'views', 'article_order', 'category', 'tags']
 
 
 def makr_article_publish(modeladmin, request, queryset):
@@ -56,7 +54,7 @@ open_article_commentstatus.short_description = '打开文章评论'
 
 class ArticleAdmin(admin.ModelAdmin):
     list_per_page = 20
-    search_fields = ('body', 'title')
+    search_fields = ('body', 'title', 'desc')
     form = ArticleForm
     list_display = (
         'id', 'title', 'author', 'link_to_category', 'created_time', 'views', 'status', 'type', 'article_order')

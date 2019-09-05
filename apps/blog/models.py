@@ -67,7 +67,7 @@ class Article(BaseModel):
         ('p', '页面'),
     )
     title = models.CharField('标题', max_length=200, unique=True)
-    # body = MDTextField('正文')
+    desc = models.CharField('描述', max_length=255, default='描述～～')
     pub_time = models.DateTimeField('发布时间', blank=False, null=False, default=now)
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
     comment_status = models.CharField('评论状态', max_length=1, choices=COMMENT_STATUS, default='o')
@@ -104,6 +104,7 @@ class Article(BaseModel):
         return names
 
     def save(self, *args, **kwargs):
+        self.desc = self.articledetail.body[:254] if self.articledetail.body else '文章还没有任何内容'
         super().save(*args, **kwargs)
 
     def viewed(self):
@@ -136,6 +137,8 @@ class Article(BaseModel):
         # 前一篇
         return Article.objects.filter(id__lt=self.id, status='p').first()
 
+    # def body_to_string(self):
+    #     return self.body
 
 class ArticleDetail(models.Model):
     """
@@ -145,8 +148,7 @@ class ArticleDetail(models.Model):
     article = models.OneToOneField(to='Article', on_delete=models.CASCADE, verbose_name='所属文章')
     body = MDTextField('正文')
 
-    def body_to_string(self):
-        return self.body
+
 
     def __str__(self):
         return self.article.title
