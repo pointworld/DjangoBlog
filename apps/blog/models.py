@@ -67,7 +67,7 @@ class Article(BaseModel):
         ('p', '页面'),
     )
     title = models.CharField('标题', max_length=200, unique=True)
-    body = MDTextField('正文')
+    # body = MDTextField('正文')
     pub_time = models.DateTimeField('发布时间', blank=False, null=False, default=now)
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
     comment_status = models.CharField('评论状态', max_length=1, choices=COMMENT_STATUS, default='o')
@@ -78,9 +78,6 @@ class Article(BaseModel):
     article_order = models.IntegerField('排序,数字越大越靠前', blank=False, null=False, default=0)
     category = models.ForeignKey('Category', verbose_name='分类', on_delete=models.CASCADE, blank=False, null=False)
     tags = models.ManyToManyField('Tag', verbose_name='标签集合', blank=True)
-
-    def body_to_string(self):
-        return self.body
 
     def __str__(self):
         return self.title
@@ -140,6 +137,25 @@ class Article(BaseModel):
         return Article.objects.filter(id__lt=self.id, status='p').first()
 
 
+class ArticleDetail(models.Model):
+    """
+    文章详情
+    """
+
+    article = models.OneToOneField(to='Article', on_delete=models.CASCADE, verbose_name='所属文章')
+    body = MDTextField('正文')
+
+    def body_to_string(self):
+        return self.body
+
+    def __str__(self):
+        return self.article.title
+
+    class Meta:
+        verbose_name = '文章详情'
+        verbose_name_plural = verbose_name
+
+
 class Category(BaseModel):
     """文章分类"""
     name = models.CharField('分类名', max_length=30, unique=True)
@@ -161,7 +177,7 @@ class Category(BaseModel):
     def get_category_tree(self):
         """
         递归获得分类目录的父级
-        :return: 
+        :return:
         """
         categorys = []
 
@@ -177,7 +193,7 @@ class Category(BaseModel):
     def get_sub_categorys(self):
         """
         获得当前分类目录所有子集
-        :return: 
+        :return:
         """
         categorys = []
         all_categorys = Category.objects.all()

@@ -1,19 +1,4 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-
-"""
-@version: ??
-@author: liangliangyy
-@license: MIT Licence 
-@contact: liangliangyy@gmail.com
-@site: https://www.lylinux.net/
-@software: PyCharm
-@file: admin_site.py
-@time: 2018/1/7 上午2:21
-"""
 from django.contrib.admin import AdminSite
-from DjangoBlog.utils import get_current_site
 from django.contrib.sites.admin import SiteAdmin
 from django.contrib.admin.models import LogEntry
 from django.contrib.sites.models import Site
@@ -49,7 +34,13 @@ class DjangoBlogAdminSite(AdminSite):
 
 admin_site = DjangoBlogAdminSite(name='admin')
 
-admin_site.register(Article, ArticlelAdmin)
+class ArticleDetailInline(admin.StackedInline):
+    model = ArticleDetail
+
+class ExtendedArticleAdmin(ArticleAdmin):
+    inlines = ArticleAdmin.inlines + [ArticleDetailInline]
+
+admin_site.register(Article, ExtendedArticleAdmin)
 admin_site.register(Category, CategoryAdmin)
 admin_site.register(Tag, TagAdmin)
 admin_site.register(Links, LinksAdmin)
