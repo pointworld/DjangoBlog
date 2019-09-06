@@ -28,11 +28,14 @@
         Powered by
         <a href="https://www.djangoproject.com/" rel="nofollow" target="blank">Django</a>
         &nbsp;|&nbsp;
-        <a href="https://github.com/liangliangyy/DjangoBlog" rel="nofollow" target="blank">liangliangyy</a>
+        <a href="https://github.com/pointworld/DjangoBlog" rel="nofollow" target="blank">pointworld</a>
         |
-        <a href="https://www.lylinux.net" target="blank">lylinux</a>
+        <a href="http://blog.pointborn.com" target="blank">pointborn</a>
         |
         本页面加载耗时:<!!LOAD_TIMES!!>s
+        {% if ANALYTICS_CODE %}
+            {{ ANALYTICS_CODE|safe }}
+        {% endif %}
     </div>
     {% if BEIAN_CODE %}
         <div class="site-info" style="text-align: center">
@@ -45,9 +48,6 @@
                 {{ BEIAN_CODE_GONGAN |safe }}
             {% endif %}
         </div>
-    {% endif %}
-    {% if ANALYTICS_CODE %}
-        {{ ANALYTICS_CODE| safe }}
     {% endif %}
 </footer><!-- #colophon -->
 

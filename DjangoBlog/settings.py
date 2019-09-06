@@ -265,5 +265,5 @@ COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter'
 ]
 
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'uploads')
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
 MEDIA_URL = '/media/'

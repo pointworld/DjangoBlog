@@ -140,6 +140,7 @@ class Article(BaseModel):
     # def body_to_string(self):
     #     return self.body
 
+
 class ArticleDetail(models.Model):
     """
     文章详情
