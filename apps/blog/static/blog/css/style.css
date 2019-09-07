@@ -1,5 +1,5 @@
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -13,10 +13,10 @@ body {
 
 ol,
 ul {
-    list-style: none;
+    /*list-style: none;*/
 }
 
-blockquote,
+/*blockquote,*/
 q {
     quotes: none;
 }
@@ -814,14 +814,14 @@ article.sticky .featured-post {
     line-height: 1.714285714;
 }
 
-.entry-content h1,
+/*.entry-content h1,*/
 .comment-content h1 {
     font-size: 21px;
     font-size: 1.5rem;
     line-height: 1.5;
 }
 
-.entry-content h2,
+/*.entry-content h2,*/
 .comment-content h2,
 .mu_register h2 {
     font-size: 18px;
@@ -829,28 +829,28 @@ article.sticky .featured-post {
     line-height: 1.6;
 }
 
-.entry-content h3,
+/*.entry-content h3,*/
 .comment-content h3 {
     font-size: 16px;
     font-size: 1.142857143rem;
     line-height: 1.846153846;
 }
 
-.entry-content h4,
+/*.entry-content h4,*/
 .comment-content h4 {
     font-size: 14px;
     font-size: 1rem;
     line-height: 1.846153846;
 }
 
-.entry-content h5,
+/*.entry-content h5,*/
 .comment-content h5 {
     font-size: 13px;
     font-size: 0.928571429rem;
     line-height: 1.846153846;
 }
 
-.entry-content h6,
+/*.entry-content h6,*/
 .comment-content h6 {
     font-size: 12px;
     font-size: 0.857142857rem;
@@ -896,18 +896,18 @@ article.sticky .featured-post {
     margin-bottom: 0;
 }
 
-.entry-content ul,
+/*.entry-content ul,*/
 .comment-content ul,
 .mu_register ul {
     list-style: disc outside;
 }
 
-.entry-content ol,
+/*.entry-content ol,*/
 .comment-content ol {
     list-style: decimal outside;
 }
 
-.entry-content li,
+/*.entry-content li,*/
 .comment-content li,
 .mu_register li {
     margin: 0 0 0 36px;
@@ -917,9 +917,7 @@ article.sticky .featured-post {
 .entry-content blockquote,
 .comment-content blockquote {
     margin-bottom: 24px;
-    margin-bottom: 1.714285714rem;
-    padding: 24px;
-    padding: 1.714285714rem;
+    padding: 6px;
     font-style: italic;
 }
 
@@ -2465,16 +2463,16 @@ html {
 /*目录*/
 
 /*主标题*/
-.entry-content[contenteditable=true]  h1 {
+.entry-content h1 {
     text-align: center;
 }
 
 /*次标题*/
-.entry-content[contenteditable=true] h2,
-.entry-content[contenteditable=true] h3,
-.entry-content[contenteditable=true] h4,
-.entry-content[contenteditable=true] h5,
-.entry-content[contenteditable=true] h6 {
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
     padding-left: 4px;
     border-left: 6px solid blue;
 }
@@ -2484,6 +2482,7 @@ html {
 /*正文*/
 
 /*块定义*/
+.entry-content blockquote,
 .entry-content[contenteditable=true] blockquote {
     padding-left: 36px;
     border-left: 4px solid red;
@@ -2494,7 +2493,7 @@ html {
 /*附录*/
 
 /*代码*/
-.entry-content[contenteditable=true] pre {
+.entry-content pre {
     padding: 1em;
     border-radius: 3px;
     overflow: auto;
@@ -2506,9 +2505,6 @@ html {
     tab-size: 2;
     hyphens: none;
     color: rgb(204, 204, 204);
-}
-.entry-content[contenteditable=true] pre > code {
-    /*width: 100%!important;*/
 }
 
 /*列表*/
