@@ -13,7 +13,7 @@ body {
 
 ol,
 ul {
-    /*list-style: none;*/
+    list-style: none;
 }
 
 /*blockquote,*/
@@ -484,15 +484,14 @@ html {
 }
 
 body {
-    font-size: 14px;
-    font-size: 1rem;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Times New Roman", serif;
+    font-size: medium;
     text-rendering: optimizeLegibility;
-    color: #444;
+    color: #111;
 }
 
 body.custom-font-enabled {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-family: "Times New Roman", serif;
 }
 
 a {
@@ -1020,7 +1019,7 @@ img.aligncenter,
     margin-bottom: 1.714285714rem;
 }
 
-.entry-content table,
+/*.entry-content table,*/
 .comment-content table {
     border-bottom: 1px solid #ededed;
     color: #757575;
@@ -2508,8 +2507,9 @@ html {
 }
 
 /*列表*/
-.entry-content[contenteditable=true] ul, ol {
-
+.entry-content ul,
+.entry-content ol {
+    list-style: disc outside!important;
 }
 
 /*表格*/

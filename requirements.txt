@@ -20,7 +20,6 @@ django-simpleui==2.8
 django-uuslug==1.1.8
 elasticsearch==7.0.0
 elasticsearch-dsl==7.0.0
-gunicorn==19.9.0
 idna==2.8
 ipaddress==1.0.22
 isort==4.3.21
