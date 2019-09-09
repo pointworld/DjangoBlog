@@ -25,9 +25,11 @@ class ArticleListFilter(admin.SimpleListFilter):
 
 
 class ArticleForm(forms.ModelForm):
+    desc = forms.CharField()
+
     class Meta:
         model = Article
-        fields = ['title', 'author', 'pub_time', 'status','comment_status', 'type', 'views', 'article_order', 'category', 'tags']
+        fields = ['title', 'desc', 'author', 'pub_time', 'status','comment_status', 'type', 'views', 'article_order', 'category', 'tags']
 
 
 def makr_article_publish(modeladmin, request, queryset):
@@ -54,10 +56,10 @@ open_article_commentstatus.short_description = '打开文章评论'
 
 class ArticleAdmin(admin.ModelAdmin):
     list_per_page = 20
-    search_fields = ('body', 'title', 'desc')
+    search_fields = ('title', 'desc', 'body')
     form = ArticleForm
     list_display = (
-        'id', 'title', 'author', 'link_to_category', 'created_time', 'views', 'status', 'type', 'article_order')
+        'id', 'title', 'desc', 'author', 'link_to_category', 'created_time', 'views', 'status', 'type', 'article_order')
     list_display_links = ('id', 'title')
     list_filter = (ArticleListFilter, 'status', 'type', 'category', 'tags')
     filter_horizontal = ('tags',)

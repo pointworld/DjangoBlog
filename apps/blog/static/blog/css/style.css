@@ -2496,14 +2496,14 @@ html {
     padding: 1em;
     border-radius: 3px;
     overflow: auto;
-    background: rgb(45, 45, 45);
+    background: rgba(200, 200, 200, 0.9);
     font-size: 0.8em;
     font-family: Consolas, Monaco, "Andale Mono", monospace;
     word-break: normal;
     line-height: 1.5;
     tab-size: 2;
     hyphens: none;
-    color: rgb(204, 204, 204);
+    color: rgb(20, 20, 20);
 }
 
 /*列表*/

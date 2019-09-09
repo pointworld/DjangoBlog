@@ -104,7 +104,7 @@ class Article(BaseModel):
         return names
 
     def save(self, *args, **kwargs):
-        self.desc = self.articledetail.body[:254] if self.articledetail.body else '文章还没有任何内容'
+        # self.desc = self.articledetail.body[:254] if self.articledetail.body else '文章还没有任何内容'
         super().save(*args, **kwargs)
 
     def viewed(self):
