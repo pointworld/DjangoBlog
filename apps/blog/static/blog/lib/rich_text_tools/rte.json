@@ -1,0 +1,246 @@
+{
+  "menus": [
+    {
+      "command": "formatblock",
+      "header": "Format",
+      "values": {
+        "h1": "h1",
+        "h2": "h2",
+        "h3": "h3",
+        "h4": "h4",
+        "h5": "h5",
+        "h6": "h6",
+        "p": "p",
+        "pre": "pre"
+      }
+    },
+    {
+      "command": "fontname",
+      "header": "Font",
+      "values": {
+        "Arial": "Arial",
+        "Arial Black": "Arial Black",
+        "Courier New": "Courier New",
+        "Times New Roman": "Times New Roman"
+      }
+    },
+    {
+      "command": "fontsize",
+      "header": "Size",
+      "values": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7"
+      }
+    },
+    {
+      "command": "forecolor",
+      "header": "Color",
+      "values": {
+        "black": "Black",
+        "red": "Red",
+        "yellow":"yellow",
+        "blue": "Blue",
+        "green": "Green",
+        "white": "White"
+      }
+    },
+    {
+      "command": "backcolor",
+      "header": "BgColor",
+      "values": {
+        "yellow":"yellow",
+        "white": "White",
+        "red": "Red",
+        "green": "Green",
+        "black": "Black"
+      }
+    },
+    {
+      "command": "formatBlock",
+      "header": "Block",
+      "values": {
+        "address": "address",
+        "article": "article",
+        "aside": "aside",
+        "blockquote": "blockquote",
+        "dd": "dd",
+        "div": "div",
+        "dl": "dl",
+        "dt": "dt",
+        "footer": "footer",
+        "header": "header",
+        "nav": "nav",
+        "p": "p",
+        "pre": "pre",
+        "section": "section"
+      }
+    }
+  ],
+  "buttons": [
+    {
+      "command": "cleanDoc",
+      "text": "Clean",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/clean.gif"
+    },
+    {
+      "command": "printDoc",
+      "text": "Print",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/print.png"
+    },
+    {
+      "command": "undo",
+      "text": "Undo",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/undo.gif"
+    },
+    {
+      "command": "redo",
+      "text": "Redo",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/redo.gif"
+    },
+    {
+      "command": "removeFormat",
+      "text": "Remove formatting",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/format.png"
+    },
+    {
+      "command": "bold",
+      "text": "Bold",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/bold.gif"
+    },
+    {
+      "command": "italic",
+      "text": "Italic",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/italic.gif"
+    },
+    {
+      "command": "underline",
+      "text": "Underline",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/underline.gif"
+    },
+    {
+      "command": "strikeThrough",
+      "text": "strikeThrough",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/strikethrough.gif"
+    },
+    {
+      "command": "subscript",
+      "text": "subscript",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/subscript.gif"
+    },
+    {
+      "command": "superscript",
+      "text": "superscript",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/superscript.gif"
+    },
+    {
+      "command": "justifyLeft",
+      "text": "Left align",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/justifyleft.gif"
+    },
+    {
+      "command": "justifyCenter",
+      "text": "Center align",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/justifycenter.gif"
+    },
+    {
+      "command": "justifyRight",
+      "text": "Right align",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/justifyright.gif"
+    },
+    {
+      "command": "justifyFull",
+      "text": "justifyFull",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/justifyfull.gif"
+    },
+    {
+      "command": "insertHorizontalRule",
+      "text": "Horizontal Rule",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/hr.gif"
+    },
+    {
+      "command": "insertorderedlist",
+      "text": "Numbered list",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/numberedlist.gif"
+    },
+    {
+      "command": "insertunorderedlist",
+      "text": "Dotted list",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/dottedlist.gif"
+    },
+    {
+      "command": "formatblock",
+      "text": "Quote",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/quote.gif"
+    },
+    {
+      "command": "outdent",
+      "text": "Outdent",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/outdent.gif"
+    },
+    {
+      "command": "indent",
+      "text": "Indent",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/indent.gif"
+    },
+    {
+      "command": "forecolor",
+      "text": "Forecolor",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/textcolor.gif"
+    },
+    {
+      "command": "backcolor",
+      "text": "Bgcolor",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/bgcolor.gif"
+    },
+    {
+      "command": "createlink",
+      "text": "createLink",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/hyperlink.gif"
+    },
+    {
+      "command": "unlink",
+      "text": "Unlink",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/unlink.gif"
+    },
+    {
+      "command": "insertimage",
+      "text": "Add Image",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/image.gif"
+    },
+    {
+      "command": "insertText",
+      "text": "Insert Special Character",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/special_chars.gif"
+    },
+    {
+      "command": "insertTable",
+      "text": "Insert Table",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/insert_table.gif"
+    },
+    {
+      "command": "cut",
+      "text": "Cut",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/cut.gif"
+    },
+    {
+      "command": "copy",
+      "text": "Copy",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/copy.gif"
+    },
+    {
+      "command": "paste",
+      "text": "Paste",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/paste.gif"
+    },
+    {
+      "command": "smiley",
+      "text": "smiley",
+      "image": "/static\/blog\/lib\/rich_text_tools\/icons\/smiley.gif"
+    }
+  ]
+}
