@@ -151,7 +151,9 @@ let ToC = {
                     // h1
                     case a:
                         item = document.createElement("dt")
-                        item.style.backgroundColor = 'yellow'
+                        item.style.backgroundColor = '#272727'
+                        item.style.fontWeight = 700
+                        item.style.color = '#bfb9b9'
                         item.style.textAlign = "center"
                         item.style.fontSize = '20px'
                         item.dataset.index = ''
@@ -225,11 +227,24 @@ let ToC = {
 
         divSideBarTab.onmouseenter = function () {
             divSideBarContents.style.display = 'block'
+            divSideBar.style.right = '50px'
+            para.innerText = 'X'
+            para.style.fontSize = '18px'
+            para.style.cursor = 'pointer'
         };
 
         divSideBar.onmouseleave = function () {
-            divSideBarContents.style.display = 'none'
+            // divSideBarContents.style.display = 'none'
         };
+
+        para.onclick = function () {
+            if (divSideBarContents.style.display === 'block') {
+                divSideBarContents.style.display = 'none'
+                divSideBar.style.right = '2px'
+                para.innerText = 'ToC'
+                para.style.fontSize = '12px'
+            }
+        }
 
         document.body.appendChild(divSideBar)
 
@@ -238,7 +253,7 @@ let ToC = {
             #sideBar{
                 position:fixed;
                 top:50px;
-                right:0;
+                right:2px;
                 width: auto;
                 height: auto;
                 font-size:12px;
@@ -247,15 +262,16 @@ let ToC = {
             #sideBarTab{
                 float:left;
                 width:30px;
-                border-radius:50%;
+                padding:5px;
+                border-radius:10px 20px 80px 10px;
                 text-align:center;
                 background-color:rgba(0,0,0,.2);
             }
             #sideBarContents{
                 float:left;
                 overflow:auto;
-                max-height:460px;
-                border-radius:10px 60px 80px 0;
+                max-height:680px;
+                border-radius:10px 20px 80px 10px;
                 background:#dedede;
             }
             #sideBarContents dl, #sideBarContents dt, #sideBarContents dd {
@@ -271,7 +287,8 @@ let ToC = {
                 color:#A7995A;
             }
             #sideBarContents dd::before {
-                content: attr(data-index) ' ' 
+                content: attr(data-index) ' ';
+                opacity: 0.3;
             }
         `)
     }
