@@ -8,6 +8,15 @@
 [![Build Status](https://travis-ci.org/liangliangyy/DjangoBlog.svg?branch=master)](https://travis-ci.org/liangliangyy/DjangoBlog) [![codecov](https://codecov.io/gh/liangliangyy/DjangoBlog/branch/master/graph/badge.svg)](https://codecov.io/gh/liangliangyy/DjangoBlog) [![Requirements Status](https://requires.io/github/liangliangyy/DjangoBlog/requirements.svg?branch=master)](https://requires.io/github/liangliangyy/DjangoBlog/requirements/?branch=master)  [![license](https://img.shields.io/github/license/liangliangyy/djangoblog.svg)]()  
 
 ## 主要功能：
+
+新增功能（add by [pointworld](https://github.com/pointworld)）：
+- 集成 django-simpleui，替换 Django 自带的管理后台
+- 集成 python-decouple 模块，拆离敏感的配置信息
+- 分离文章（Article）表中内容字段到一个新的文章详情（ArticleDetail）表中，与原文章表做一对一关联关系
+- 支持在博客文章页面在线编辑文章并保存
+- 自编写了一个简单的目录树（toc），为文章页面添加目录功能
+
+原有功能：
 - 文章，页面，分类目录，标签的添加，删除，编辑等。文章及页面支持`Markdown`，支持代码高亮。
 - 支持文章全文搜索。
 - 完整的评论功能，包括发表回复评论，以及评论的邮件提醒，支持`Markdown`。
