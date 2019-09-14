@@ -108,6 +108,10 @@ class Article(BaseModel):
         super().save(*args, **kwargs)
 
     def viewed(self):
+        """
+        文章阅读量 +1
+        :return:
+        """
         self.views += 1
         self.save(update_fields=['views'])
 

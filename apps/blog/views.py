@@ -1,18 +1,19 @@
 from django.shortcuts import render
-
-# Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin
 import os
 import datetime
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views import View
+
 from django.conf import settings
 from django import forms
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, Http404, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from DjangoBlog.utils import cache, get_md5, get_blog_setting
 from django.shortcuts import get_object_or_404
-from blog.models import Article, Category, Tag, Links
+from blog.models import Article, ArticleDetail, Category, Tag, Links
 from comments.forms import CommentForm
 import logging
 
@@ -20,10 +21,10 @@ logger = logging.getLogger(__name__)
 
 
 class ArticleListView(ListView):
-    # template_name属性用于指定使用哪个模板进行渲染
+    # template_name 属性用于指定使用哪个模板进行渲染
     template_name = 'blog/article_index.html'
 
-    # context_object_name属性用于给上下文变量取名（在模板中使用该名字）
+    # context_object_name 属性用于给上下文变量取名（在模板中使用该名字）
     context_object_name = 'article_list'
 
     # 页面类型，分类目录或标签列表等
@@ -37,32 +38,43 @@ class ArticleListView(ListView):
 
     @property
     def page_number(self):
+        """
+        获取页数
+        :return:
+        """
+
         page_kwarg = self.page_kwarg
         page = self.kwargs.get(page_kwarg) or self.request.GET.get(page_kwarg) or 1
         return page
 
     def get_queryset_cache_key(self):
         """
-        子类重写.获得queryset的缓存key
+        子类重写。获得 queryset 的缓存 key
         """
+
         raise NotImplementedError()
 
     def get_queryset_data(self):
         """
-        子类重写.获取queryset的数据
+        子类重写。获取 queryset 的数据
         """
+
         raise NotImplementedError()
 
     def get_queryset_from_cache(self, cache_key):
-        '''
+        """
         缓存页面数据
-        :param cache_key: 缓存key
+        :param cache_key: 缓存 key
         :return:
-        '''
+        """
+
         value = cache.get(cache_key)
+
+        # 如果存在缓存，则从缓存中获取数据
         if value:
             logger.info('get view cache.key:{key}'.format(key=cache_key))
             return value
+        # 否则去数据库中获取数据，缓存后，返回给用户
         else:
             article_list = self.get_queryset_data()
             cache.set(cache_key, article_list)
@@ -70,23 +82,26 @@ class ArticleListView(ListView):
             return article_list
 
     def get_queryset(self):
-        '''
+        """
         重写默认，从缓存获取数据
         :return:
-        '''
+        """
+
+        # 获取 queryset 对应的缓存 key
         key = self.get_queryset_cache_key()
+        # 根据缓存 key 获取 queryset 数据
         value = self.get_queryset_from_cache(key)
+
         return value
 
     def get_context_data(self, **kwargs):
         kwargs['linktype'] = self.link_type
-        return super(ArticleListView, self).get_context_data(**kwargs)
+        return super().get_context_data(**kwargs)
 
 
 class IndexView(ArticleListView):
-    '''
-    首页
-    '''
+    """首页"""
+
     # 友情链接类型
     link_type = 'i'
 
@@ -95,21 +110,27 @@ class IndexView(ArticleListView):
         return article_list
 
     def get_queryset_cache_key(self):
+        """
+        获取 queryset 的缓存 key
+        :return:
+        """
         cache_key = 'index_{page}'.format(page=self.page_number)
         return cache_key
 
 
 class ArticleDetailView(DetailView):
-    '''
+    """
     文章详情页面
-    '''
+    """
+
     template_name = 'blog/article_detail.html'
     model = Article
     pk_url_kwarg = 'article_id'
     context_object_name = "article"
 
     def get_object(self, queryset=None):
-        obj = super(ArticleDetailView, self).get_object()
+        obj = super().get_object()
+        # 文章阅读数 +1
         obj.viewed()
         self.object = obj
         return obj
@@ -118,6 +139,7 @@ class ArticleDetailView(DetailView):
         articleid = int(self.kwargs[self.pk_url_kwarg])
         comment_form = CommentForm()
         user = self.request.user
+
         # 如果用户已经登录，则隐藏邮件和用户名输入框
         if user.is_authenticated and not user.is_anonymous and user.email and user.username:
             comment_form.fields.update({
@@ -135,8 +157,41 @@ class ArticleDetailView(DetailView):
 
         kwargs['next_article'] = self.object.next_article
         kwargs['prev_article'] = self.object.prev_article
+        kwargs['article_id'] = articleid
+        kwargs['user_id'] = user.id if user.id is not None else -1
+        kwargs['author_id'] = self.object.author.id
 
-        return super(ArticleDetailView, self).get_context_data(**kwargs)
+
+        return super().get_context_data(**kwargs)
+
+
+class ArticleDetailUpdateView(LoginRequiredMixin, View):
+    """
+    更新文章内容
+    只有登录用户是文章作者才能保存
+    """
+
+    login_url = '/login/'
+    redirect_field_name = 'next'
+
+    def post(self, request, *args, **kwargs):
+        article_id = request.POST.get('article_id', None)
+        body = request.POST.get('body', '')
+
+        if article_id is not None:
+            try:
+                article_detail = ArticleDetail.objects.get(article_id=article_id)
+                author = article_detail.article.author
+                if request.user.id != author.id:
+                    return JsonResponse({'status': 'fail', 'code': 0, 'info': '保存失败，您不是该文章的作者，没有保存权限'})
+                if article_detail.body != body:
+                    article_detail.body = body
+                    article_detail.save()
+            except Exception as e:
+                return JsonResponse({'status': 'fail', 'code': 1, 'info': '保存失败 {}'.format(e)})
+            return JsonResponse({'status': 'success', 'code': 2, 'info': '保存成功'})
+
+        return JsonResponse({'status': 'fail', 'code': 3, 'info': '保存失败，参数 article_id 不能为 None'})
 
 
 class CategoryDetailView(ArticleListView):

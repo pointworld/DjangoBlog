@@ -38,6 +38,11 @@
         <div>
           <button id="view_article">浏览</button>
         </div>
+        {% if user.is_authenticated %}
+        <div>
+          <button id="save_article">保存</button>
+        </div>
+        {% endif %}
       </div>
 
       {% load_article_detail article False user %}
@@ -79,10 +84,63 @@
     {% endif %}
   </div><!-- #primary -->
 
+  <!-- JQuery -->
+  <script src="{% static 'blog/js/jquery-3.1.1.js' %}"></script>
+  <script src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
   <!-- Rich Text Editor -->
   <script src="{% static 'blog/lib/rich_text_tools/rte.js' %}" type="application/javascript"></script>
   <!-- Table of Contents -->
   <script src="{% static 'blog/js/toc.js' %}"></script>
+
+  <script>
+    let article_id = {{ article_id|safe }};
+    let user_id = {{ user_id|safe }};
+    let author_id = {{ author_id|safe }};
+
+    const save_article = document.getElementById('save_article')
+
+    if (save_article) {
+      save_article.addEventListener('click', () => {
+        if (user_id.toString() === '-1') {
+          layer.msg('请先登录，登录之后才能进行保存操作')
+          return
+        }
+
+        if (author_id.toString() !== user_id.toString()) {
+          layer.msg('您不是该文章的作者，没有权限修改该文章')
+          return
+        }
+
+        // 获取容纳文章内容的类名为 entry-content 的元素
+        const entry_content = document.getElementsByClassName('entry-content')[0]
+        // 获取 entry-content 容器下的内容
+        const content = entry_content.innerHTML.trim()
+
+        let post_url = '/article/' + article_id + '/update'
+        let data = {body: content, article_id: article_id}
+
+        $.ajax({
+          type: 'post',
+          url: post_url,
+          data: data,
+          headers:{ "X-CSRFtoken": '{{ csrf_token }}'},
+          success: function (data) {
+            if (data) {
+              // 2 表示保存成功
+              if (data.code === 2) {
+                layer.msg(data.info, {offset: 'rt', icon: 1})
+              } else {
+                layer.msg(data.info, {icon: 5})
+              }
+            }
+          },
+          error: function (err) {
+            console.log(err)
+          }
+        })
+      })
+    }
+  </script>
 {% endblock %}
 
 {% block sidebar %}
@@ -92,4 +150,3 @@
     {% endcache %}
   {% endwith %}
 {% endblock %}
-
