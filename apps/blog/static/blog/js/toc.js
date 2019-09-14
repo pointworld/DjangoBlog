@@ -132,6 +132,8 @@ let ToC = {
         divSideBarContents.appendChild(dlist)
         let num = 0
 
+        let h2_num = h3_num = h4_num = h5_num = h6_num = 0
+
         // foreach all nodes within container, get all heading nodes, deal with all heading nodes
         for (let i = 0, len = nodes.length; i < len; i++) {
             if (nodes[i].nodeName === a || nodes[i].nodeName === b || nodes[i].nodeName === c ||
@@ -144,36 +146,64 @@ let ToC = {
                 // set anchor attribute to heading element
                 nodes[i].setAttribute("id", "blogTitle" + num)
                 let item
+
                 switch (nodes[i].nodeName) {
+                    // h1
                     case a:
                         item = document.createElement("dt")
                         item.style.backgroundColor = 'yellow'
                         item.style.textAlign = "center"
                         item.style.fontSize = '20px'
+                        item.dataset.index = ''
+                        nodes[i].dataset.index = item.dataset.index
                         break
+                    // h2
                     case b:
+                        h2_num += 1
                         item = document.createElement("dd")
                         item.style.backgroundColor = "#aaa"
                         item.style.color = "#000"
                         item.style.fontWeight = 'bold'
                         item.style.textAlign = "center"
+                        nodes[i].dataset.index = item.dataset.index = h2_num + '.'
+                        nodes[i].dataset.index = item.dataset.index
+                        h3_num = 0
                         break
+                    // h3
                     case c:
+                        h3_num += 1
                         item = document.createElement("dd")
                         item.style.color = "#000"
                         item.style.fontWeight = 'bold'
+                        item.dataset.index = h2_num + '.' + h3_num + '.'
+                        nodes[i].dataset.index = item.dataset.index
+                        h4_num = 0
                         break
+                    // h4
                     case d:
+                        h4_num += 1
                         item = document.createElement("dd")
                         item.style.textIndent = "1em"
+                        item.dataset.index = h2_num + '.' + h3_num + '.' + h4_num + '.'
+                        nodes[i].dataset.index = item.dataset.index
+                        h5_num = 0
                         break
+                    // h5
                     case e:
+                        h5_num += 1
                         item = document.createElement("dd")
                         item.style.textIndent = "2em"
+                        item.dataset.index = h2_num + '.' + h3_num + '.' + h4_num + '.' + h5_num + '.'
+                        nodes[i].dataset.index = item.dataset.index
+                        h6_num = 0
                         break
+                    // h6
                     case f:
+                        h6_num += 1
                         item = document.createElement("dd")
                         item.style.textIndent = "3em"
+                        item.dataset.index = h2_num + '.' + h3_num + '.' + h4_num + '.' + h5_num + '.' + h6_num + '.'
+                        nodes[i].dataset.index = item.dataset.index
                         break
                 }
 
@@ -234,12 +264,16 @@ let ToC = {
             }
             #sideBarContents dt, #sideBarContents dd {
                 margin:2px;
-                padding:0;
+                padding:6px;
                 cursor:pointer;
             }
             #sideBarContents dd:hover, dt:hover {
                 color:#A7995A;
-        }`)
+            }
+            #sideBarContents dd::before {
+                content: attr(data-index) ' ' 
+            }
+        `)
     }
 }
 

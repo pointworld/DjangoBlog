@@ -2451,13 +2451,18 @@ html {
 
 /*文档文字*/
 
+.entry-content {
+    line-height: 1.8;
+    font-size: 18px;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 /*被选中文字*/
 .entry-content[contenteditable=true] ::selection {
     background: #ff5500;
     opacity: 1;
 }
 
-/*分类 - 基于 URN 实现分类，促进 URN 的发展*/
 
 /*目录*/
 
@@ -2478,7 +2483,11 @@ html {
 
 /*摘要*/
 
-/*正文*/
+/*段落*/
+
+.entry-content p {
+    line-height: 1.8;
+}
 
 /*块定义*/
 .entry-content blockquote,
@@ -2510,6 +2519,11 @@ html {
 .entry-content ul,
 .entry-content ol {
     list-style: disc outside!important;
+}
+
+.entry-content ul li,
+.entry-content ol li {
+    line-height: 30px;
 }
 
 /*表格*/
