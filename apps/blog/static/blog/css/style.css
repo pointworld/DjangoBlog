@@ -2502,14 +2502,17 @@ html {
 
 /*代码*/
 .entry-content pre {
-    padding: 1em;
+    padding: 10px 15px;
     border-radius: 3px;
+    border-left-width: 4px;
+    border-color: rgb(221, 221, 221);
+    margin: 15px auto;
     overflow: auto;
     background: rgba(200, 200, 200, 0.9);
     font-size: 0.8em;
     font-family: Consolas, Monaco, "Andale Mono", monospace;
     word-break: normal;
-    line-height: 1.5;
+    line-height: 20px;
     tab-size: 2;
     hyphens: none;
     color: rgb(20, 20, 20);
@@ -2519,35 +2522,39 @@ html {
 .entry-content ul,
 .entry-content ol {
     list-style: disc outside!important;
+    background: rgba(255, 237, 237, 0.7);
 }
 
 .entry-content ul li,
 .entry-content ol li {
     line-height: 30px;
+    font-size: 16px;
 }
 
 /*表格*/
-.entry-content[contenteditable=true] table {
+
+.entry-content table {
+    width: 100%;
     border-top: 2px solid #131415!important;
     border-bottom: 2px solid #131415!important;
-    collapse: collapse;
     border-collapse: collapse;
-    width: 100%;
+    collapse: collapse;
+    font-size: 15px;
 }
-.entry-content[contenteditable=true] table th,
-.entry-content[contenteditable=true] table thead{
+.entry-content table th,
+.entry-content table thead{
     text-align: left;
     border-bottom: 1px solid #334455!important;
     background-color: #71D6FF!important;
 }
-.entry-content[contenteditable=true] table tr:nth-of-type(2n-1){
+.entry-content table tr:nth-of-type(2n-1){
     background-color: #9a9a9a;
 }
-.entry-content[contenteditable=true] table td{
+.entry-content table td{
     border:none;
 }
 
 /*图片*/
-.entry-content[contenteditable=true] img {
+.entry-content img {
     width: 100%;
 }
