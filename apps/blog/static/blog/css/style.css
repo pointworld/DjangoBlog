@@ -576,18 +576,18 @@ a:hover {
 
 .site-header h1 {
     font-size: 24px;
-    font-size: 1.714285714rem;
     line-height: 1.285714286;
     margin-bottom: 14px;
-    margin-bottom: 1rem;
 }
 
 .site-header h2 {
+    display: inline;
     font-weight: normal;
-    font-size: 13px;
-    font-size: 0.928571429rem;
+    font-size: 20px;
     line-height: 1.846153846;
-    color: #757575;
+    background: linear-gradient(to right, #c41a16, blue);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .header-image {
