@@ -67,6 +67,7 @@
 
 const edit_article = document.getElementById('edit_article')
 const view_article = document.getElementById('view_article')
+// const save_article = document.getElementById('save_article')
 
 let editable = false
 
@@ -304,6 +305,16 @@ let RteBox = {
             }
             `);
 
+    function showBox() {
+      rte_box.style.left = 0
+      rte_box.style.top = 0
+      rte_box.style.display = 'block'
+    }
+
+    function hideBox() {
+      rte_box.style.display = 'none'
+    }
+
     function mouseUp(e) {
 
       function showBox() {
@@ -358,6 +369,109 @@ let RteBox = {
     // maincontent.addEventListener('mouseup', mouseUp, false)
     let article = document.getElementsByTagName('article')[0]
     article.addEventListener('mouseup', mouseUp, false)
+
+    $(document).keyup(function(event) {
+      if (event.ctrlKey) {
+        switch (event.keyCode) {
+          // ctrl+0 help
+          case 48:
+            window.alert('help docs: operate article by keyboard shortcuts\n' +
+              '\n' +
+              'ctrl+0: help docs\n' +
+              'ctrl+1: h1\n' +
+              'ctrl+2: h2\n' +
+              'ctrl+3: h3\n' +
+              'ctrl+4: h4\n' +
+              'ctrl+5: h5\n' +
+              'ctrl+6: h6\n' +
+              'ctrl+c: code\n' +
+              'ctrl+f: format\n' +
+              'ctrl+h: hide edit box\n' +
+              'ctrl+i: indent\n' +
+              'ctrl+l: list\n' +
+              'ctrl+o: outdent\n' +
+              'ctrl+p: paragraph\n' +
+              'ctrl+s: show\n' +
+              'ctrl+t: table\n' +
+              'ctrl+v: view mode\n' +
+              'ctrl+w: edit mode\n' +
+              'ctrl+x: save mode')
+            break
+          // ctrl+1 h1
+          case 49:
+          // ctrl+2 h2
+          case 50:
+          // ctrl+3 h3
+          case 51:
+          // ctrl+4 h4
+          case 52:
+          // ctrl+5 h5
+          case 53:
+          // ctrl+6 h6
+          case 54:
+            RteBox.edit('formatblock', 'h'+(event.keyCode-48))
+            break
+          // ctrl+c code
+          case 67:
+            RteBox.edit('formatblock', 'pre')
+            break
+          // ctrl+f format
+          case 70:
+            RtrBox.edit('removeFormat')
+            break
+          // ctrl+h hide
+          case 72:
+            hideBox()
+            break
+          // ctrl+i indent
+          case 73:
+            RteBox.edit('indent')
+            break
+          // ctrl+l list
+          case 76:
+            RteBox.edit('insertunorderedlist')
+            break
+          // ctrl+o outdent
+          case 79:
+            RteBox.edit('outdent')
+            break
+          // ctrl+p paragraph
+          case 80:
+            RteBox.edit('formatblock', 'p')
+            break
+          // ctrl+s show
+          case 83:
+            showBox()
+            break
+          // ctrl+t table
+          case 84:
+            RteBox.edit('insertTable')
+            break
+          // ctrl+v view mode
+          case 86:
+            if (view_article) {
+              entry_content.removeAttribute('contenteditable')
+              editable = false
+            }
+            break
+          // ctrl+w edit mode
+          case 87:
+            if (edit_article) {
+              entry_content.setAttribute('contenteditable', true)
+              editable = true
+            }
+            break
+          // ctrl+x save mode
+          case 88:
+            if (save_article) {
+              save_article.click()
+            }
+            break
+          default:
+            break
+        }
+      }
+    })
 
     // 匀速回到顶部功能
     let timer = null;
