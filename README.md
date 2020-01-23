@@ -15,6 +15,26 @@
 - 分离文章（Article）表中内容字段到一个新的文章详情（ArticleDetail）表中，与原文章表做一对一关联关系
 - 支持在博客文章页面在线编辑文章并保存
 - 自编写了一个简单的目录树（toc），为文章页面添加目录功能
+- 支持通过键盘快捷键编辑文章
+  - ctrl+0: help docs
+  - ctrl+1: h1
+  - ctrl+2: h2
+  - ctrl+3: h3
+  - ctrl+4: h4
+  - ctrl+5: h5
+  - ctrl+6: h6
+  - ctrl+c: code
+  - ctrl+f: format
+  - ctrl+h: hide edit box
+  - ctrl+i: indent
+  - ctrl+l: list
+  - ctrl+o: outdent
+  - ctrl+p: paragraph
+  - ctrl+s: show edit box
+  - ctrl+t: table
+  - ctrl+v: view mode
+  - ctrl+w: edit mode
+  - ctrl+x: save mode
 
 原有功能：
 - 文章，页面，分类目录，标签的添加，删除，编辑等。文章及页面支持`Markdown`，支持代码高亮。
