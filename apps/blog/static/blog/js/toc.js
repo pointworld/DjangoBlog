@@ -118,7 +118,9 @@ let ToC = {
 
         divSideBar.appendChild(divSideBarTab)
 
-        let para = document.createElement('p')
+        let para = document.createElement('button')
+        para.style.background = 'rgba(0, 0, 0, 0)'
+        para.style.border = 0
         divSideBarTab.appendChild(para)
         let txt = document.createTextNode('ToC')
         para.appendChild(txt)
@@ -231,19 +233,26 @@ let ToC = {
             para.innerText = 'X'
             para.style.fontSize = '18px'
             para.style.cursor = 'pointer'
-        };
+        }
 
-        divSideBar.onmouseleave = function () {
-            // divSideBarContents.style.display = 'none'
-        };
-
-        para.onclick = function () {
-            if (divSideBarContents.style.display === 'block') {
+        divSideBarTab.onclick = function () {
+            if (divSideBarContents.style.display === 'none') {
+                divSideBarContents.style.display = 'block'
+                divSideBar.style.right = '50px'
+                para.innerText = 'X'
+                para.style.fontSize = '18px'
+                para.style.cursor = 'pointer'
+            }
+            else {
                 divSideBarContents.style.display = 'none'
                 divSideBar.style.right = '2px'
                 para.innerText = 'ToC'
                 para.style.fontSize = '12px'
             }
+        }
+
+        divSideBar.onmouseleave = function () {
+            // divSideBarContents.style.display = 'none'
         }
 
         document.body.appendChild(divSideBar)
