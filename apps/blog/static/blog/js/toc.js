@@ -118,12 +118,12 @@ let ToC = {
 
         divSideBar.appendChild(divSideBarTab)
 
-        let para = document.createElement('button')
-        para.style.background = 'rgba(0, 0, 0, 0)'
-        para.style.border = 0
-        divSideBarTab.appendChild(para)
+        let btn_tab = document.createElement('button')
+        btn_tab.style.background = 'rgba(0, 0, 0, 0)'
+        btn_tab.style.border = 0
+        divSideBarTab.appendChild(btn_tab)
         let txt = document.createTextNode('ToC')
-        para.appendChild(txt)
+        btn_tab.appendChild(txt)
 
         let divSideBarContents = document.createElement('DIV')
         divSideBarContents.style.display = 'none'
@@ -214,6 +214,10 @@ let ToC = {
                 // create anchor link
                 let itemtext = document.createTextNode(nodetext)
                 item.appendChild(itemtext)
+                let btn = document.createElement('button')
+                btn.style.background = 'rgba(0, 0, 0, 0)'
+                btn.style.border = 0
+                item.appendChild(btn)
                 item.setAttribute("name", num)
                 item.onclick = function () {
                     let pos = ToC.getElementPosition(document.getElementById("blogTitle" + this.getAttribute("name")))
@@ -230,24 +234,24 @@ let ToC = {
         divSideBarTab.onmouseenter = function () {
             divSideBarContents.style.display = 'block'
             divSideBar.style.right = '50px'
-            para.innerText = 'X'
-            para.style.fontSize = '18px'
-            para.style.cursor = 'pointer'
+            btn_tab.innerText = 'X'
+            btn_tab.style.fontSize = '18px'
+            btn_tab.style.cursor = 'pointer'
         }
 
         divSideBarTab.onclick = function () {
             if (divSideBarContents.style.display === 'none') {
                 divSideBarContents.style.display = 'block'
                 divSideBar.style.right = '50px'
-                para.innerText = 'X'
-                para.style.fontSize = '18px'
-                para.style.cursor = 'pointer'
+                btn_tab.innerText = 'X'
+                btn_tab.style.fontSize = '18px'
+                btn_tab.style.cursor = 'pointer'
             }
             else {
                 divSideBarContents.style.display = 'none'
                 divSideBar.style.right = '2px'
-                para.innerText = 'ToC'
-                para.style.fontSize = '12px'
+                btn_tab.innerText = 'ToC'
+                btn_tab.style.fontSize = '12px'
             }
         }
 
