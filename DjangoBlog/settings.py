@@ -1,13 +1,10 @@
 import sys
 import os
 
-from decouple import config
-
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 DEBUG = False
 
@@ -88,11 +85,11 @@ WSGI_APPLICATION = 'DjangoBlog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_MYSQL_NAME'),
-        'USER': config('DB_MYSQL_USER'),
-        'PASSWORD': config('DB_MYSQL_PASSWORD'),
-        'HOST': config('DB_MYSQL_HOST'),
-        'PORT': config('DB_MYSQL_PORT', default=3306, cast=int),
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'PORT': os.environ.get('MYSQL_PORT'),
         'OPTIONS': {'charset': 'utf8', 'init_command': 'SET default_storage_engine=INNODB;'},
     }
 }
@@ -179,12 +176,12 @@ EMAIL_USE_SSL = True
 
 EMAIL_HOST = 'smtp.mxhichina.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = config('DJANGO_EMAIL_USER')
-EMAIL_HOST_PASSWORD = config('DJANGO_EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.environ.get('DJANGO_EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = config('DJANGO_EMAIL_USER')
+SERVER_EMAIL = os.environ.get('DJANGO_EMAIL_USER')
 # Setting debug=false did NOT handle except email notifications
-ADMINS = [(config('DJANGO_ADMIN_EMAIL_USER'), config('DJANGO_ADMIN_EMAIL_ACCOUNT'))]
+ADMINS = [(os.environ.get('DJANGO_ADMIN_EMAIL_USER'), os.environ.get('DJANGO_ADMIN_EMAIL_ACCOUNT'))]
 # WX ADMIN password(Two times md5)
 WXADMIN = '995F03AC401D6CABABAEF756FC4D43C7'
 
