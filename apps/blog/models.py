@@ -150,7 +150,8 @@ class ArticleDetail(models.Model):
     文章详情
     """
 
-    article = models.OneToOneField(to='Article', on_delete=models.CASCADE, verbose_name='所属文章')
+    article = models.OneToOneField(to='Article', on_delete=models.CASCADE, related_name='article_detail',
+                                   verbose_name='所属文章')
     body = MDTextField('正文', default='')
 
     def __str__(self):
