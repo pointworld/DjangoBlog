@@ -50,7 +50,7 @@
             {{ article.desc|custom_markdown|escape|truncatechars_content }}
             <p class='read-more'><a href=' {{ article.get_absolute_url }}'>Read more</a></p>
         {% else %}
-            {{ article.articledetail.body|custom_markdown }}
+            {{ article.article_detail.body|custom_markdown }}
         {% endif %}
 
     </div><!-- .entry-content -->
