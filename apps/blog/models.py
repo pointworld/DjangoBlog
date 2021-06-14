@@ -78,6 +78,7 @@ class Article(BaseModel):
     article_order = models.IntegerField('排序,数字越大越靠前', blank=False, null=False, default=0)
     category = models.ForeignKey('Category', verbose_name='分类', on_delete=models.CASCADE, blank=False, null=False)
     tags = models.ManyToManyField('Tag', verbose_name='标签集合', blank=True)
+    is_show = models.BooleanField('是否展示', default=True, blank=True)
 
     def __str__(self):
         return self.title

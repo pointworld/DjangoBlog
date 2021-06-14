@@ -106,7 +106,11 @@ class IndexView(ArticleListView):
     link_type = 'i'
 
     def get_queryset_data(self):
-        article_list = Article.objects.filter(type='a', status='p')
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = Article.objects.filter(type='a', status='p')
+        else:
+            article_list = Article.objects.filter(type='a', status='p', is_show=True)
         return article_list
 
     def get_queryset_cache_key(self):
@@ -207,7 +211,11 @@ class CategoryDetailView(ArticleListView):
         categoryname = category.name
         self.categoryname = categoryname
         categorynames = list(map(lambda c: c.name, category.get_sub_categorys()))
-        article_list = Article.objects.filter(category__name__in=categorynames, status='p')
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = Article.objects.filter(category__name__in=categorynames, status='p')
+        else:
+            article_list = Article.objects.filter(category__name__in=categorynames, status='p', is_show=True)
         return article_list
 
     def get_queryset_cache_key(self):
@@ -243,7 +251,11 @@ class AuthorDetailView(ArticleListView):
 
     def get_queryset_data(self):
         author_name = self.kwargs['author_name']
-        article_list = Article.objects.filter(author__username=author_name, type='a', status='p')
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = Article.objects.filter(author__username=author_name, type='a', status='p')
+        else:
+            article_list = Article.objects.filter(author__username=author_name, type='a', status='p', is_show=True)
         return article_list
 
     def get_context_data(self, **kwargs):
@@ -264,7 +276,11 @@ class TagDetailView(ArticleListView):
         tag = get_object_or_404(Tag, slug=slug)
         tag_name = tag.name
         self.name = tag_name
-        article_list = Article.objects.filter(tags__name=tag_name, type='a', status='p')
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = Article.objects.filter(tags__name=tag_name, type='a', status='p')
+        else:
+            article_list = Article.objects.filter(tags__name=tag_name, type='a', status='p', is_show=True)
         return article_list
 
     def get_queryset_cache_key(self):
@@ -293,7 +309,12 @@ class ArchivesView(ArticleListView):
     template_name = 'blog/article_archives.html'
 
     def get_queryset_data(self):
-        return Article.objects.filter(status='p').all()
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = Article.objects.filter(status='p')
+        else:
+            article_list = Article.objects.filter(status='p', is_show=True)
+        return article_list
 
     def get_queryset_cache_key(self):
         cache_key = 'archives'

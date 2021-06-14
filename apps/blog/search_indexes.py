@@ -24,4 +24,9 @@ class ArticleIndex(indexes.SearchIndex, indexes.Indexable):
         return Article
 
     def index_queryset(self, using=None):
-        return self.get_model().objects.filter(status='p')
+        user = self.request.user
+        if user and user.is_superuser:
+            article_list = self.get_model().objects.filter(status='p')
+        else:
+            article_list = self.get_model().objects.filter(status='p', is_show=True)
+        return article_list

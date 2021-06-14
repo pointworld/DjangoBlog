@@ -29,7 +29,8 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'desc', 'author', 'pub_time', 'status','comment_status', 'type', 'views', 'article_order', 'category', 'tags']
+        fields = ['title', 'desc', 'author', 'pub_time', 'status', 'comment_status', 'type', 'views', 'article_order',
+                  'category', 'tags', 'is_show']
 
 
 def makr_article_publish(modeladmin, request, queryset):
@@ -59,9 +60,10 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'desc', 'body')
     form = ArticleForm
     list_display = (
-        'id', 'title', 'desc', 'author', 'link_to_category', 'created_time', 'views', 'status', 'type', 'article_order')
+        'id', 'title', 'desc', 'author', 'link_to_category', 'created_time', 'views', 'status', 'type', 'article_order',
+        'is_show')
     list_display_links = ('id', 'title')
-    list_filter = (ArticleListFilter, 'status', 'type', 'category', 'tags')
+    list_filter = (ArticleListFilter, 'status', 'type', 'category', 'tags', 'is_show')
     filter_horizontal = ('tags',)
     exclude = ('created_time', 'last_mod_time')
     view_on_site = True
